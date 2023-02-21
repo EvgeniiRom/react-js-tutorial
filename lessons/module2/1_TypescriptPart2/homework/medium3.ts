@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type FIXME = any;
+type FixMeExlude = Exclude<OrderState, 'buyingSupplies' | 'producing'>
+type FIXME = FixMeExlude[]
 
 const orderStates = [
   "initial",
@@ -14,5 +15,5 @@ type OrderState = typeof orderStates[number];
 // Hint: type guards
 export const getUserOrderStates = (orderStates: OrderState[]): FIXME =>
   orderStates.filter(
-    (state) => state !== "buyingSupplies" && state !== "producing"
+    (state): state is FixMeExlude => state !== "buyingSupplies" && state !== "producing"
   );
